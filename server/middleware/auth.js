@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const { getOne, run, setCurrentUser } = require('../database/connection');
+const { getOne, run, runWithUser } = require('../database/connection');
 
 function hashPassword(password, salt) {
   return crypto.scryptSync(password, salt, 64).toString('hex');
@@ -40,11 +40,8 @@ async function authRequired(req, res, next) {
       display_name: session.display_name,
       role: session.role || 'user',
     };
-    setCurrentUser(req.user);
-    res.on('finish', () => setCurrentUser(null));
-    next();
+    runWithUser(req.user, next);
   } catch (e) {
-    setCurrentUser(null);
     next(e);
   }
 }
@@ -63,8 +60,7 @@ async function optionalAuth(req, res, next) {
     );
     if (session) {
       req.user = session;
-      setCurrentUser(session);
-      res.on('finish', () => setCurrentUser(null));
+      return runWithUser(session, next);
     }
     next();
   } catch (e) {

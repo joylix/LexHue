@@ -1,10 +1,11 @@
 const { Pool } = require('pg');
 const fs = require('fs');
 const path = require('path');
+const { AsyncLocalStorage } = require('async_hooks');
 const config = require('../config');
 
 let pool = null;
-let currentUser = null;
+const userContext = new AsyncLocalStorage();
 
 const DEFAULT_USER = {
   user_id: 'local',
@@ -76,11 +77,15 @@ async function transaction(callback) {
 }
 
 function getCurrentUser() {
-  return currentUser || DEFAULT_USER;
+  return userContext.getStore() || DEFAULT_USER;
 }
 
 function setCurrentUser(user) {
-  currentUser = user || null;
+  userContext.enterWith(user || null);
+}
+
+function runWithUser(user, callback) {
+  return userContext.run(user || null, callback);
 }
 
 function seedFile(name) {
@@ -103,5 +108,6 @@ module.exports = {
   transaction,
   getCurrentUser,
   setCurrentUser,
+  runWithUser,
   readSeed,
 };

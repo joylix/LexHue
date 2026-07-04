@@ -67,7 +67,7 @@ export default function Settings() {
             onChange={(e) => handleChange('user_level', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700"
           >
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(l => (
+            {Array.from({ length: 10 }, (_, i) => i).map(l => (
               <option key={l} value={String(l)}>Level {l}</option>
             ))}
           </select>
@@ -88,7 +88,7 @@ export default function Settings() {
             <option value="gradient">梯度模式 (四档)</option>
           </select>
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-            严格模式：低于等于等级=已掌握，否则=陌生；梯度模式：按等级差计算
+            严格模式：低于等于等级=已掌握，否则=陌生；梯度模式：低于当前等级不标色，等于当前等级为熟识，高 1 级为浅知，高 2 级及以上为陌生
           </p>
         </div>
 

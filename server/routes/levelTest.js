@@ -47,9 +47,7 @@ function estimateArticleLevel(tokens) {
 // POST /api/level-test/start
 router.post('/start', async (req, res, next) => {
   try {
-    console.log('[level-test] startTest called');
     const result = await startTest();
-    console.log('[level-test] startTest result:', result?.sessionId, 'tokens:', result?.text?.tokens?.length);
     res.json({ success: true, data: result, error: null });
   } catch (e) {
     console.error('[level-test] startTest error:', e.message, e.stack);

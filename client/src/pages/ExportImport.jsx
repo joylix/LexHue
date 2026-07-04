@@ -51,28 +51,6 @@ export default function ExportImport() {
     }
   };
 
-  const handleBackupDb = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await fetch('/api/backup/db', {
-        headers: { Authorization: `Bearer ${localStorage.getItem('lexhue_token') || ''}` },
-      });
-      if (!response.ok) throw new Error((await response.json()).error?.message || '备份失败');
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `userdata_backup_${Date.now()}.db`;
-      a.click();
-      URL.revokeObjectURL(url);
-    } catch (e) {
-      setError('备份失败: ' + e.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleImport = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -147,17 +125,9 @@ export default function ExportImport() {
             <span className="text-xl">📊</span>
           </button>
 
-          <button
-            onClick={handleBackupDb}
-            disabled={loading}
-            className="w-full flex items-center justify-between p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors disabled:opacity-50"
-          >
-            <div>
-              <div className="font-medium">数据库备份</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">PostgreSQL 版本请使用 JSON 导出</div>
-            </div>
-            <span className="text-xl">💾</span>
-          </button>
+          <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-900/40 text-sm text-gray-500 dark:text-gray-400">
+            PostgreSQL 版本请使用 JSON 导出作为账号数据备份。
+          </div>
         </div>
       </div>
 

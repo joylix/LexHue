@@ -1,7 +1,6 @@
 const express = require('express');
 const { getAll, run } = require('../database/connection');
 const { STRANGENESS_LEVELS } = require('../constants/strangeness');
-const { adminRequired } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -16,7 +15,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.put('/', adminRequired, async (req, res, next) => {
+router.put('/', async (req, res, next) => {
   try {
     const updates = req.body;
     if (!updates || typeof updates !== 'object') {
@@ -30,11 +29,17 @@ router.put('/', adminRequired, async (req, res, next) => {
       'density_threshold', 'onboarding_completed',
       'oov_default_strangeness', 'color_scheme'
     ];
+    const userWritableKeys = ['color_scheme', 'color_blind_mode'];
 
     for (const [key, value] of Object.entries(updates)) {
       if (!allowedKeys.includes(key)) {
         const err = new Error(`Invalid config key: ${key}`);
         err.type = 'validation';
+        throw err;
+      }
+      if (req.user?.role !== 'admin' && !userWritableKeys.includes(key)) {
+        const err = new Error(`需要管理员权限修改配置项: ${key}`);
+        err.type = 'forbidden';
         throw err;
       }
       if (key === 'oov_default_strangeness' && !STRANGENESS_LEVELS.includes(parseInt(value, 10))) {

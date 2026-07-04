@@ -121,7 +121,7 @@ router.get('/stats', async (req, res, next) => {
     const masteredAtLevel = masteredAtLevelRow?.cnt || 0;
     const upgradeThreshold = 0.8;
     const canUpgrade = totalDictWordsAtLevel > 0 && (masteredAtLevel / totalDictWordsAtLevel) >= upgradeThreshold;
-    const nextLevel = canUpgrade ? Math.min(userLevel + 1, 10) : null;
+    const nextLevel = canUpgrade ? Math.min(userLevel + 1, 9) : null;
     const masteryPercent = totalDictWordsAtLevel > 0 ? Math.round((masteredAtLevel / totalDictWordsAtLevel) * 100) : 0;
     res.json({
       success: true,
@@ -136,7 +136,7 @@ router.get('/stats', async (req, res, next) => {
 router.post('/upgrade-level', async (req, res, next) => {
   try {
     const currentLevel = parseInt(await getConfig(req.user.user_id, 'user_level', '4'), 10);
-    if (currentLevel >= 10) {
+    if (currentLevel >= 9) {
       const err = new Error('Already at maximum level');
       err.type = 'validation';
       throw err;
@@ -153,7 +153,7 @@ router.post('/upgrade-level', async (req, res, next) => {
       err.type = 'validation';
       throw err;
     }
-    const newLevel = currentLevel + 1;
+    const newLevel = Math.min(currentLevel + 1, 9);
     await setConfig(req.user.user_id, 'user_level', newLevel);
     res.json({ success: true, data: { oldLevel: currentLevel, newLevel, mastered, totalDictWords }, error: null });
   } catch (e) {
