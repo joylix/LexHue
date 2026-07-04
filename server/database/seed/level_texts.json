@@ -1,0 +1,62 @@
+[
+  {
+    "level": 1,
+    "text_id": "lt001",
+    "title": "My Family",
+    "content": "I have a family. My dad is tall. My mom is nice. I have a brother. He is six. I have a sister. She is ten. We have a dog. The dog is big. We like to play. We play in the park. I love my family."
+  },
+  {
+    "level": 2,
+    "text_id": "lt002",
+    "title": "A Rainy Day",
+    "content": "Today it is rainy. I stay at home. I read a book. My cat sits on my lap. She is warm and soft. My mom makes soup. It smells good. After lunch, the rain stops. I go outside. I see a rainbow. It has many colors. I am happy."
+  },
+  {
+    "level": 3,
+    "text_id": "lt003",
+    "title": "My School Day",
+    "content": "I wake up at seven every morning. I eat breakfast and walk to school. My first class is math. It is hard but interesting. Then we have English. I like reading stories. At noon, I eat lunch with my friends. In the afternoon, we have science. We do fun experiments. After school, I play soccer. Then I go home and do my homework."
+  },
+  {
+    "level": 4,
+    "text_id": "lt004",
+    "title": "Healthy Living",
+    "content": "Eating well and staying active are important for good health. Try to eat plenty of fruits and vegetables every day. Drink water instead of sugary drinks. Exercise for at least thirty minutes daily. Walking, swimming, and cycling are all great choices. Getting enough sleep is also essential. Most adults need seven to eight hours per night. Small changes in your daily routine can make a big difference over time."
+  },
+  {
+    "level": 5,
+    "text_id": "lt005",
+    "title": "The Ocean",
+    "content": "The ocean covers more than seventy percent of Earth's surface. It is home to millions of species, from tiny plankton to enormous whales. Ocean currents influence weather patterns around the world. Unfortunately, human activities have harmed many marine ecosystems. Plastic pollution threatens sea life, and rising temperatures cause coral bleaching. Scientists are working to understand these challenges and develop solutions. Protecting the ocean requires cooperation between governments, businesses, and individuals."
+  },
+  {
+    "level": 6,
+    "text_id": "lt006",
+    "title": "The Industrial Revolution",
+    "content": "The Industrial Revolution marked a major turning point in history. Beginning in Britain in the late eighteenth century, it transformed economies based on agriculture and handicrafts into ones dominated by machine manufacturing. Steam power and mechanized textile production were among the key innovations. Urbanization accelerated as workers migrated from rural areas to factory towns. While industrialization raised living standards over time, it also brought harsh working conditions, child labor, and environmental degradation. These problems eventually led to labor reforms and regulatory legislation."
+  },
+  {
+    "level": 7,
+    "text_id": "lt007",
+    "title": "Democracy and Governance",
+    "content": "Democracy is a system of government in which power is vested in the people, who exercise it directly or through elected representatives. The principles of popular sovereignty, political equality, and majority rule distinguish democratic regimes from authoritarian ones. However, the mere existence of elections does not guarantee a healthy democracy. Free press, independent judiciary, and protection of minority rights are equally essential. In recent decades, many established democracies have faced challenges including political polarization, declining trust in institutions, and the influence of money in politics."
+  },
+  {
+    "level": 8,
+    "text_id": "lt008",
+    "title": "Economic Globalization",
+    "content": "Economic globalization refers to the increasing interdependence of national economies through cross-border trade, investment, and capital flows. Advances in transportation and communication technology have dramatically reduced the costs of international commerce. Multinational corporations now coordinate production networks spanning dozens of countries. While globalization has lifted hundreds of millions out of poverty, it has also generated significant inequality. Critics argue that it undermines labor standards, erodes local cultures, and gives corporations excessive power over governments. The debate over globalization's net benefits remains one of the most consequential policy discussions of our era."
+  },
+  {
+    "level": 9,
+    "text_id": "lt009",
+    "title": "Consciousness and the Brain",
+    "content": "The relationship between consciousness and neural activity remains one of the deepest unsolved problems in science. Neuroscientists have identified correlations between specific brain states and subjective experiences, yet the mechanism by which physical processes give rise to phenomenal consciousness remains elusive. Some researchers propose that consciousness emerges from integrated information processing across distributed neural networks. Others argue that current physical theories are fundamentally inadequate to explain subjective experience. The hard problem of consciousness, as philosopher David Chalmers termed it, challenges our basic assumptions about the nature of reality and the limits of scientific explanation."
+  },
+  {
+    "level": 10,
+    "text_id": "lt010",
+    "title": "The Limits of Formal Systems",
+    "content": "In 1931, Kurt Gödel published his incompleteness theorems, demonstrating that any consistent formal system capable of basic arithmetic must contain true statements that cannot be proved within the system. This result shattered the hope, championed by Hilbert and others, that all mathematical truth could be captured by a single complete and consistent axiomatic framework. Turing's subsequent work on the halting problem established fundamental limits on algorithmic computation. These discoveries reveal an inherent tension between the power of formal methods and the incompleteness of any single system. They suggest that mathematical understanding requires not just mechanical proof but also creative insight that transcends any fixed set of rules."
+  }
+]

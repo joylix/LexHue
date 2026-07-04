@@ -1,0 +1,38 @@
+node_modules/
+dist/
+.postgres/
+.agents/
+.codex/
+server/data/*.db
+server/data/*.db-shm
+server/data/*.db-wal
+server/data/*.bak*
+server/data/audio/
+server/data/*.json
+*.log
+.DS_Store
+Thumbs.db
+*:Zone.Identifier
+.env
+# 数据源文件（不入库）
+coca60000.csv
+COCA.csv
+COCA_tokens.csv
+# 调试/检查脚本
+server/check*.js
+server/clean_*.js
+server/debug*.js
+server/diagnose.js
+server/drop_*.js
+server/final_check.js
+server/fix_*.js
+server/migrate_*.js
+server/test_*.js
+server/verify_*.js
+server/scripts/debug-*.js
+# 备份和临时文件
+*.bak
+# 根目录临时文件
+/package.json
+/package-lock.json
+dictionary.json.bak
