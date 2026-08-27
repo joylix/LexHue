@@ -126,14 +126,45 @@ cd ../client
 npm install
 ```
 
-## 初始化数据库
+## 初始化数据库与词典数据恢复
 
 ```bash
 cd /home/jlx/project/LexHue/server
 npm run init-db
 ```
 
-初始化会创建表结构、默认账号、默认配置，并导入项目内置的词典和测评文章种子数据。
+初始化会创建表结构、默认账号、默认配置。
+
+**重要：恢复完整词典数据**（首次部署必需步骤）
+
+项目已包含预备份的完整词典 SQL 数据（约 96 MB，776,408 条词条），位于：
+
+```text
+server/data/dictionary-backup/dictionary-20260828-071832.sql
+```
+
+首次部署时，执行完 `init-db` 后，立即恢复词典数据：
+
+```bash
+cd /home/jlx/project/LexHue/server
+bash scripts/restore-dictionary.sh server/data/dictionary-backup/dictionary-20260828-071832.sql
+```
+
+恢复后可验证：
+
+```bash
+PGHOST=/tmp/lexhue-pg PGPORT=5432 PGDATABASE=lexhue PGUSER=lexhue PGPASSWORD=*** psql -c "SELECT COUNT(*) FROM dictionary;"
+```
+
+应显示约 `776408` 条记录。
+
+如果后续需要重新生成备份，可执行：
+
+```bash
+bash server/scripts/backup-dictionary.sh
+```
+
+备份文件会保存到 `server/data/dictionary-backup/`，并保留最新 5 个备份。
 
 如果你从旧 SQLite 单机版迁移数据，可在准备好旧数据后执行：
 
@@ -141,6 +172,8 @@ npm run init-db
 cd /home/jlx/project/LexHue/server
 npm run migrate:sqlite
 ```
+
+**注意**：SQLite 迁移依赖 `better-sqlite3` 原生编译，部署时如无法编译，直接使用 SQL 备份恢复即可获得完整词典功能。
 
 ## 启动软件
 
@@ -173,6 +206,12 @@ http://localhost:5173
 ```
 
 日常开发和验证建议访问前端地址。
+
+后端也提供基础健康检查接口：
+
+```text
+GET /api/health
+```
 
 ### 生产构建
 
@@ -290,6 +329,13 @@ local / lexhue
 进入“导入导出”页面，可导出用户数据或词汇数据。
 
 建议在大量导入文章、调整词典或升级版本前先导出备份。
+
+当前 PostgreSQL 版本支持：
+
+- JSON 全量导出
+- CSV 词汇导出
+
+旧版 SQLite 数据库文件下载接口已废弃，不再提供 `.db` 文件备份下载。
 
 ## 常见问题
 
